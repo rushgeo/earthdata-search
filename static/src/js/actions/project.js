@@ -14,6 +14,7 @@ import {
   REMOVE_COLLECTION_FROM_PROJECT,
   REMOVE_GRANULE_FROM_PROJECT_COLLECTION,
   RESTORE_PROJECT,
+  SELECT_HARMONY_TYPE_ACCESS_METHOD,
   SELECT_ACCESS_METHOD,
   STARTED_PROJECT_GRANULES_TIMER,
   SUBMITTED_PROJECT,
@@ -118,6 +119,11 @@ export const projectGranulesErrored = (payload) => ({
 
 export const selectAccessMethod = (payload) => ({
   type: SELECT_ACCESS_METHOD,
+  payload
+})
+
+export const selectHarmonyTypeAccessMethod = (payload) => ({
+  type: SELECT_HARMONY_TYPE_ACCESS_METHOD,
   payload
 })
 
