@@ -40,8 +40,6 @@ export const mapDispatchToProps = (dispatch) => ({
     (granuleId) => dispatch(actions.changeFocusedGranule(granuleId)),
   onRemoveGranuleFromProjectCollection:
     (data) => dispatch(actions.removeGranuleFromProjectCollection(data)),
-  onSelectHarmonyType:
-    (method) => dispatch(actions.selectHarmonyTypeAccessMethod(method)),
   onSelectAccessMethod:
     (method) => dispatch(actions.selectAccessMethod(method)),
   onSetActivePanel:
@@ -97,7 +95,6 @@ export const ProjectPanelsContainer = ({
   onChangeProjectGranulePageNum,
   onFocusedGranuleChange,
   onRemoveGranuleFromProjectCollection,
-  onSelectHarmonyType,
   onSelectAccessMethod,
   onSetActivePanel,
   onSetActivePanelGroup,
@@ -127,7 +124,6 @@ export const ProjectPanelsContainer = ({
     onChangeProjectGranulePageNum={onChangeProjectGranulePageNum}
     onFocusedGranuleChange={onFocusedGranuleChange}
     onRemoveGranuleFromProjectCollection={onRemoveGranuleFromProjectCollection}
-    onSelectHarmonyType={onSelectHarmonyType}
     onSelectAccessMethod={onSelectAccessMethod}
     onSetActivePanel={onSetActivePanel}
     onSetActivePanelGroup={onSetActivePanelGroup}
@@ -166,7 +162,6 @@ ProjectPanelsContainer.propTypes = {
   onChangeProjectGranulePageNum: PropTypes.func.isRequired,
   onFocusedGranuleChange: PropTypes.func.isRequired,
   onRemoveGranuleFromProjectCollection: PropTypes.func.isRequired,
-  onSelectHarmonyType: PropTypes.func.isRequired,
   onSelectAccessMethod: PropTypes.func.isRequired,
   onSetActivePanel: PropTypes.func.isRequired,
   onSetActivePanelGroup: PropTypes.func.isRequired,

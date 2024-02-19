@@ -30,7 +30,6 @@ const EchoForm = lazy(() => import('./EchoForm'))
  * @param {Object} props.metadata - The metadata of the current collection.
  * @param {String} props.selectedAccessMethod - The selected access method of the current collection.
  * @param {String} props.shapefileId - The shapefile id of the uploaded shapefile.
- * @param {Function} props.onSelectHarmonyType - Records if the Harmony type of access method is selected.
  * @param {Function} props.onSelectAccessMethod - Selects an access method.
  * @param {Function} props.onSetActivePanel - Switches the currently active panel.
  * @param {Function} props.onUpdateAccessMethod - Updates an access method.
@@ -832,7 +831,6 @@ AccessMethod.propTypes = {
     endDate: PropTypes.string,
     startDate: PropTypes.string
   }),
-  onSelectHarmonyType: PropTypes.func.isRequired,
   onSelectAccessMethod: PropTypes.func.isRequired,
   onSetActivePanel: PropTypes.func,
   onTogglePanels: PropTypes.func,

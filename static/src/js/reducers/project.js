@@ -10,7 +10,6 @@ import {
   REMOVE_COLLECTION_FROM_PROJECT,
   REMOVE_GRANULE_FROM_PROJECT_COLLECTION,
   RESTORE_FROM_URL,
-  SELECT_HARMONY_TYPE_ACCESS_METHOD,
   SELECT_ACCESS_METHOD,
   STARTED_PROJECT_GRANULES_TIMER,
   SUBMITTED_PROJECT,
@@ -504,8 +503,7 @@ const projectReducer = (state = initialState, action = {}) => {
             ...byId,
             [collectionId]: {
               granules: initialGranuleState,
-              isVisible: true,
-              selectedHarmonyTypeAccessMethod: false
+              isVisible: true
             }
           }
         }
@@ -551,30 +549,6 @@ const projectReducer = (state = initialState, action = {}) => {
       return {
         ...initialState,
         ...project
-      }
-    }
-
-    case SELECT_HARMONY_TYPE_ACCESS_METHOD: {
-      const {
-        collectionId,
-        selectedHarmonyTypeAccessMethod
-      } = action.payload
-
-      const { collections } = state
-      const { byId } = collections
-
-      return {
-        ...state,
-        collections: {
-          ...collections,
-          byId: {
-            ...byId,
-            [collectionId]: {
-              ...byId[collectionId],
-              selectedHarmonyTypeAccessMethod
-            }
-          }
-        }
       }
     }
 

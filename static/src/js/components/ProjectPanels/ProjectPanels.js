@@ -281,7 +281,6 @@ class ProjectPanels extends PureComponent {
       onChangeProjectGranulePageNum,
       onFocusedGranuleChange,
       onRemoveGranuleFromProjectCollection,
-      onSelectHarmonyType,
       onSelectAccessMethod,
       onSetActivePanel,
       onToggleAboutCSDAModal,
@@ -591,7 +590,6 @@ class ProjectPanels extends PureComponent {
               granuleMetadata={granulesMetadata}
               index={index}
               metadata={collectionMetadata}
-              onSelectHarmonyType={onSelectHarmonyType}
               onSelectAccessMethod={onSelectAccessMethod}
               onSetActivePanel={onSetActivePanel}
               onTogglePanels={onTogglePanels}
@@ -718,7 +716,6 @@ ProjectPanels.propTypes = {
   onChangeProjectGranulePageNum: PropTypes.func.isRequired,
   onFocusedGranuleChange: PropTypes.func.isRequired,
   onRemoveGranuleFromProjectCollection: PropTypes.func.isRequired,
-  onSelectHarmonyType: PropTypes.func.isRequired,
   onSelectAccessMethod: PropTypes.func.isRequired,
   onSetActivePanel: PropTypes.func.isRequired,
   onSetActivePanelGroup: PropTypes.func.isRequired,
