@@ -76,14 +76,15 @@ export class AccessMethod extends Component {
       )
     } = selectedMethod || {}
 
+    const harmonyTypeSelected = false
+
     this.state = {
       enableTemporalSubsetting,
       enableSpatialSubsetting,
-      enableConcatenateDownload
+      enableConcatenateDownload,
+      harmonyTypeSelected
     }
 
-    // eslint-disable-next-line max-len
-    this.handleHarmonyTypeAccessMethodSelection = this.handleHarmonyTypeAccessMethodSelection.bind(this)
     this.handleAccessMethodSelection = this.handleAccessMethodSelection.bind(this)
     this.handleOutputFormatSelection = this.handleOutputFormatSelection.bind(this)
     this.handleOutputProjectionSelection = this.handleOutputProjectionSelection.bind(this)
@@ -106,20 +107,24 @@ export class AccessMethod extends Component {
   }
 
   handleHarmonyTypeAccessMethodSelection() {
-    const { metadata, onSelectHarmonyType } = this.props
+    this.setState({ harmonyTypeSelected: true })
 
+    const { metadata, onSelectAccessMethod } = this.props
     const { conceptId: collectionId } = metadata
 
-    onSelectHarmonyType({
+    onSelectAccessMethod({
       collectionId,
-      selectedHarmonyTypeAccessMethod: true
+      selectedAccessMethod: null
     })
   }
 
   handleAccessMethodSelection(method) {
     const { metadata, onSelectAccessMethod } = this.props
-
     const { conceptId: collectionId } = metadata
+
+    if (!method.includes('harmony')) {
+      this.setState({ harmonyTypeSelected: false })
+    }
 
     onSelectAccessMethod({
       collectionId,
@@ -248,6 +253,7 @@ export class AccessMethod extends Component {
   renderStep1(hasHarmony, radioList, collectionId, selectedAccessMethod) {
     if (hasHarmony) {
       const id = `${collectionId}_access-method__harmony_type`
+      const { harmonyTypeSelected: checked } = this.state
 
       return (
         <>
@@ -259,7 +265,7 @@ export class AccessMethod extends Component {
             description="Select a service to customize options"
             details="Select a Harmony service in the section below"
             onChange={() => this.handleHarmonyTypeAccessMethodSelection()}
-            checked={false} // XXX get from state?
+            checked={checked}
           />
 
           <RadioList
