@@ -527,6 +527,12 @@ export class AccessMethod extends Component {
 
     const selectedSpatialDisplay = createSpatialDisplay(spatial)
 
+    const harmonyMethods = accessMethodsByType.Harmony
+    // eslint-disable-next-line max-len
+    const harmonyOptions = <select>{harmonyMethods.map((value) => <option key={value.id}>{value.id}</option>)}</select>
+    // eslint-disable-next-line capitalized-comments
+    // console.log(harmonyOptions)
+
     return (
       <div className="access-method">
         <ProjectPanelSection
@@ -552,8 +558,22 @@ export class AccessMethod extends Component {
           heading="Configure data customization options"
           intro="Edit the options below to configure the customization and output options for the selected data product."
           step={2}
-          faded={!selectedAccessMethod}
+          // eslint-disable-next-line react/destructuring-assignment
+          faded={!selectedAccessMethod && !this.state.harmonyTypeSelected} // XXX
         >
+          {
+            // PLACEHOLDER XXX
+            // eslint-disable-next-line react/destructuring-assignment
+            this.state.harmonyTypeSelected && ( // XXX
+              harmonyOptions
+              /* <ProjectPanelSection
+                customHeadingTag="h4"
+                heading="Harmony heading"
+                intro="Select a Harmony service."
+                nested
+              /> */
+            )
+          }
           {
             isCustomizationAvailable && (
               <>
