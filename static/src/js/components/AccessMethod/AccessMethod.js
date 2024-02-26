@@ -1,3 +1,4 @@
+/* eslint-disable capitalized-comments */
 import React, {
   Component,
   lazy,
@@ -6,6 +7,7 @@ import React, {
 import PropTypes from 'prop-types'
 import { Alert, Form } from 'react-bootstrap'
 import moment from 'moment'
+import * as Select from '@radix-ui/react-select'
 
 import { pluralize } from '../../util/pluralize'
 import { createSpatialDisplay } from '../../util/createSpatialDisplay'
@@ -17,6 +19,7 @@ import AccessMethodRadio from '../FormFields/AccessMethodRadio/AccessMethodRadio
 import RadioList from '../FormFields/RadioList/RadioList'
 import Spinner from '../Spinner/Spinner'
 
+import './Select.css'
 import './AccessMethod.scss'
 import { ousFormatMapping, harmonyFormatMapping } from '../../../../../sharedUtils/outputFormatMaps'
 
@@ -287,6 +290,39 @@ export class AccessMethod extends Component {
     )
   }
 
+  renderHarmonySelector(harmonyMethods) {
+    // const harmonyMethods = accessMethodsByType.Harmony
+
+    // const harmonyOptions = <select>{harmonyMethods.map((value) => <option key={value.id}>{value.id}</option>)}</select>
+
+    return (
+      <Select.Root name="name">
+        <Select.Trigger className="SelectTrigger">
+          <Select.Value placeholder="PLACEHOLDER" />
+          <Select.Icon className="SelectIcon" />
+        </Select.Trigger>
+
+        <Select.Portal>
+          <Select.Content className="SelectContent">
+            <Select.ScrollUpButton className="SelectScrollButton" />
+            <Select.Viewport className="SelectViewport">
+              {
+                harmonyMethods.map((value) => (
+                  <Select.Item className="SelectItem" key={value.methodKey} value={`${value.methodKey}_val`}>
+                    <Select.ItemText key={`${value.methodKey}_text`}>{value.name}</Select.ItemText>
+                    <Select.ItemIndicator key={`${value.methodKey}_itemIndicator`} className="SelectItemIndicator" />
+                  </Select.Item>
+                ))
+              }
+            </Select.Viewport>
+            <Select.ScrollDownButton className="SelectScrollButton" />
+            <Select.Arrow />
+          </Select.Content>
+        </Select.Portal>
+      </Select.Root>
+    )
+  }
+
   render() {
     const {
       accessMethods,
@@ -529,7 +565,7 @@ export class AccessMethod extends Component {
 
     const harmonyMethods = accessMethodsByType.Harmony
     // eslint-disable-next-line max-len
-    const harmonyOptions = <select>{harmonyMethods.map((value) => <option key={value.id}>{value.id}</option>)}</select>
+    // const harmonyOptions = <select>{harmonyMethods.map((value) => <option key={value.id}>{value.id}</option>)}</select>
     // eslint-disable-next-line capitalized-comments
     // console.log(harmonyOptions)
 
@@ -562,16 +598,9 @@ export class AccessMethod extends Component {
           faded={!selectedAccessMethod && !this.state.harmonyTypeSelected} // XXX
         >
           {
-            // PLACEHOLDER XXX
             // eslint-disable-next-line react/destructuring-assignment
             this.state.harmonyTypeSelected && ( // XXX
-              harmonyOptions
-              /* <ProjectPanelSection
-                customHeadingTag="h4"
-                heading="Harmony heading"
-                intro="Select a Harmony service."
-                nested
-              /> */
+              this.renderHarmonySelector(harmonyMethods)
             )
           }
           {
