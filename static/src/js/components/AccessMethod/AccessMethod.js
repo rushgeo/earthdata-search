@@ -290,30 +290,34 @@ export class AccessMethod extends Component {
     )
   }
 
-  renderHarmonySelector(harmonyMethods) {
-    // const harmonyMethods = accessMethodsByType.Harmony
-
-    // const harmonyOptions = <select>{harmonyMethods.map((value) => <option key={value.id}>{value.id}</option>)}</select>
-
+  renderJustItems(harmonyMethods) {
     return (
-      <Select.Root name="name">
-        <Select.Trigger className="SelectTrigger">
-          <Select.Value placeholder="PLACEHOLDER" />
+      <div key="HarmonyMethodsList">
+        {
+          harmonyMethods.map((value) => (
+            <Select.Item className="SelectItem" key={value.methodKey} value={`${value.methodKey}_val`}>
+              <Select.ItemText key={`${value.methodKey}_text`}>{value.name}</Select.ItemText>
+              <Select.ItemIndicator key={`${value.methodKey}_itemIndicator`} className="SelectItemIndicator" />
+            </Select.Item>
+          ))
+        }
+      </div>
+    )
+  }
+
+  renderHarmonySelector(harmonyMethods) {
+    return (
+      <Select.Root name="HarmonyMethodSelector">
+        <Select.Trigger key="HarmonyTrigger" className="SelectTrigger">
+          <Select.Value placeholder="Choose a service" />
           <Select.Icon className="SelectIcon" />
         </Select.Trigger>
 
         <Select.Portal>
           <Select.Content className="SelectContent">
             <Select.ScrollUpButton className="SelectScrollButton" />
-            <Select.Viewport className="SelectViewport">
-              {
-                harmonyMethods.map((value) => (
-                  <Select.Item className="SelectItem" key={value.methodKey} value={`${value.methodKey}_val`}>
-                    <Select.ItemText key={`${value.methodKey}_text`}>{value.name}</Select.ItemText>
-                    <Select.ItemIndicator key={`${value.methodKey}_itemIndicator`} className="SelectItemIndicator" />
-                  </Select.Item>
-                ))
-              }
+            <Select.Viewport key="HarmonySelectorViewport" className="SelectViewport">
+              {this.renderJustItems(harmonyMethods)}
             </Select.Viewport>
             <Select.ScrollDownButton className="SelectScrollButton" />
             <Select.Arrow />
